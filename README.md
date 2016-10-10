@@ -1,2 +1,2 @@
 # cuttlefish
-Cuttlefish is a distributed neural network using tensor flow and docker, 
+Cuttlefish is a distributed neural network using tensor flow and docker containers.
