@@ -32,10 +32,20 @@
 <h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is Cuttlefish?</h3>
 
+
 <p>
   Cuttlefish is a distributed neural network using tensor flow and docker containers. This is a team project by Computer Science PhD students at Pace University.
 </p>
 
+<h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Initial Project Proposal: Distributed Neural Networks Using Docker and Amazon Web Services Elastic Container Service</h3>
+
+<p>
+We are proposing implementing a distributed neural network using Docker containers to represent units or neurons in the a neural network. More specifically each container (neuron) will run as a service that can communicate with other neurons in the network. Our neural network will be a n layered network, implemented and configured to run on Amazon Web Service’s Elastic Container Service (ECS).
+</p>
+<p>
+  Docker is the perfect technology for this proof of concept because by design Docker containers wrap a piece of software into a self contained unit. Software running in a container will have everything it needs to run properly including an operating system, file system and configured system resources allocated specifically for it’s needs. Docker also has a mechanism for configuring and spinning up containers that should be clustered together or that are dependencies of one another.
+</p>
 
 </section>
 
