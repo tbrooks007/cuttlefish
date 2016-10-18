@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{kafka-doc}
 Apache kafka product site.
@@ -17,6 +17,15 @@ Mnist documentation.
 
 \bibitem{rabbitmq-doc}
 Rabbitmq product site.
+
+\bibitem{tensor-home}
+Tensorflow homepage.
+
+\bibitem{ben-use-docker}
+Top three benefits using docker.
+
+\bibitem{what-docker}
+What is docker?
 
 \bibitem{docker-compose-doc}
 Docker.
