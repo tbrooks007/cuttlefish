@@ -1,0 +1,4 @@
+neuralnetwork:
+  layers: 1
+  nodes: 5
+  epochs: 300
