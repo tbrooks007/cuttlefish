@@ -19,3 +19,5 @@ training:
 
 ecs:
   task_definition: 'cuttlefish-task-dev2:3'
+  cluster: 'cuttlefish-dev'
+  auto_scaling_group_resource_id: 'EC2ContainerService-cuttlefish-dev-EcsInstanceAsg-RFC6L0X7IMCP'

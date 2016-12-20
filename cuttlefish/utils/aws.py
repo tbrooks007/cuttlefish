@@ -55,3 +55,30 @@ def get_public_ip_address(ec2_instance_id):
     print(public_ip)
 
     return public_ip
+
+
+def create_new_ecs_task_instances(cluster_name, task_definition, number_of_tasks):
+    """
+        Create new ECS cluster tasks instances
+        :param cluster_name: ecs cluster name to spin up instances in
+        :param task_definition: task definition to use for the instances
+        :param number_of_tasks: number of tasks to spin up (will fail if there aren't enough
+                                resources in the corresponding auto scaling group.
+        :return: True if successful, False otherwise
+    """
+
+    if not cluster_name and not task_definition and number_of_tasks <= 0:
+        return False
+
+    ecs_client = boto3.client('ecs')
+    response = ecs_client.run_task(cluster=cluster_name, taskDefinition=task_definition, count=number_of_tasks)
+
+    if response:
+        failures = response.get('failures')
+
+        if len(failures) <= 0:
+            return True
+        else:
+            return False
+
+    return False
