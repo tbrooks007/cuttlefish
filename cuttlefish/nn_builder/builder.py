@@ -7,6 +7,11 @@ def run(application_context):
     pass
 
 
+def calculate_number_nodes(num_hidden_layers, num_nodes_per_layer, num_parameter_servers):
+
+    return (num_hidden_layers * num_nodes_per_layer) + num_parameter_servers
+
+
 def get_configuration_dir():
     """
     Get the configuration directory for the application.
@@ -55,4 +60,5 @@ def _load_yaml_configuration(config_file):
 
     config_loader = configuration_loader.ConfigurationLoader(config_file)
     return config_loader.load_config()
+
 
