@@ -23,7 +23,6 @@ if __name__ == '__main__':
     nn_config_file = os.path.join(nn_config_dir, nn_yaml_file)
     nn_config = builder.load_nn_config(nn_config_file)
 
-    #print(nn_config)
     print("...Building application context object")
 
     # step 2: calculate the number ECS task instances needed to run the configured NN
@@ -37,8 +36,16 @@ if __name__ == '__main__':
     num_parameter_servers = training_config.get('num_parameter_servers')
 
     total_number_of_nodes = builder.calculate_number_nodes(num_hidden_layers, num_nodes_per_layer, num_parameter_servers)
-    print("...Number of neural network nodes (containers) to spin up: {0}".format(total_number_of_nodes))
+    print("...Number of neural network nodes (containers) available for NN: {0}".format(total_number_of_nodes))
 
-    app_context = ApplicationContext(neural_network_config, training_config, aws_config, total_number_of_nodes)
-    #print(app_context)
+    cluster_name = aws_config.get('cluster')
+    print("...Getting all cluster ip addresses for ECS cluster: {0}".format(cluster_name))
 
+    auto_scaling_group_resource_id = aws_config.get('auto_scaling_group_resource_id')
+    ip_addresses = aws.get_all_ec2_public_ip_addresses(auto_scaling_group_resource_id)
+
+    print(ip_addresses)
+
+    app_context = ApplicationContext(neural_network_config, training_config, aws_config, total_number_of_nodes, ip_addresses)
+
+    # Next: call out to rania's code with app context
