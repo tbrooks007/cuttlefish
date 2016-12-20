@@ -1,10 +1,21 @@
 from cuttlefish.nn.configs import configuration_loader
+from cuttlefish.utils import aws
 
 import os
 
 
 def run(application_context):
-    pass
+
+    ecs_cluster_name = application_context.aws_config.get('cluster')
+    task_definition = application_context.aws_config.get('task_definition')
+    total_number_of_nodes = application_context.total_nodes
+
+    print("...Spinning up node instances (docker containers) in ECS cluster: {0}".format(ecs_cluster_name))
+
+    success = aws.create_new_ecs_task_instances(ecs_cluster_name, task_definition, total_number_of_nodes)
+    print("...Instances created successful: {0}".format(success))
+
+    return success
 
 
 def calculate_number_nodes(num_hidden_layers, num_nodes_per_layer, num_parameter_servers):

@@ -42,10 +42,3 @@ if __name__ == '__main__':
     app_context = ApplicationContext(neural_network_config, training_config, aws_config, total_number_of_nodes)
     #print(app_context)
 
-    ecs_cluster_name = aws_config.get('cluster')
-    task_definition = aws_config.get('task_definition')
-
-    print("...Spinning up node instances (docker containers) in ECS cluster: {0}".format(ecs_cluster_name))
-
-    success = aws.create_new_ecs_task_instances(ecs_cluster_name, task_definition, total_number_of_nodes)
-    print("...Instances created successful: {0}".format(success))
