@@ -16,6 +16,7 @@ neural_network:
 training:
   epochs: 300
   data_batch_size: 100
+  num_parameter_servers: 2
 
 ecs:
   task_definition: 'cuttlefish-task-dev2:3'

@@ -1,8 +1,7 @@
 from cuttlefish.nn.configs import configuration_loader
-from cuttlefish.system_models.application_context import ApplicationContext
 
 import os
-import argparse
+
 
 def run(application_context):
     pass
@@ -14,7 +13,7 @@ def get_configuration_dir():
     :return: string of the path of the configuration directory
     """
 
-    return build_abs_path_config_path('cuttlefish/nn/configs/')
+    return build_abs_path_config_path('../nn/configs/')
 
 
 def build_abs_path_config_path(config_path):
@@ -57,36 +56,3 @@ def _load_yaml_configuration(config_file):
     config_loader = configuration_loader.ConfigurationLoader(config_file)
     return config_loader.load_config()
 
-
-if __name__ == '__main__':
-
-    # set up cmd arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-nn', action='store', dest='nn_yaml_file',  help='File that configures the neural network you want to spin up.')
-
-    # parse arguments
-    results = parser.parse_args()
-    nn_yaml_file = results.nn_yaml_file
-
-    # todo: create application context object
-    # step 1: load yaml
-    # step 2: calculate number of ECS task instances needed using hyperparameter values from the yaml
-    # step 3: call run tasks (from our library to set up new instances of the task...)
-
-    # step 1: load yaml file
-    nn_config_dir = get_configuration_dir()
-    nn_config_file = os.path.join(nn_config_dir, nn_yaml_file)
-    nn_config = load_nn_config(nn_config_file)
-
-    print(nn_config)
-
-    # step 2: calculate the number ECS task instances needed to run the configured NN
-    neural_network_config = nn_config.get('neural_network')
-    training_config = nn_config.get('training')
-    aws_config = nn_config.get('ecs')
-
-    app_context = ApplicationContext(neural_network_config, training_config, aws_config)
-
-    print(app_context)
-
-    # step 3: spin up!
