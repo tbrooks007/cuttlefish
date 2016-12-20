@@ -1,4 +1,4 @@
-from .cuttlefish.nn.configs import configuration_loader
+from cuttlefish.nn.configs import configuration_loader
 import os
 
 
@@ -12,7 +12,7 @@ def get_configuration_dir():
     :return: string of the path of the configuration directory
     """
 
-    return build_abs_path_config_path('/cuttlefish/nn/configs/')
+    return build_abs_path_config_path('cuttlefish/nn/configs/')
 
 
 def build_abs_path_config_path(config_path):
