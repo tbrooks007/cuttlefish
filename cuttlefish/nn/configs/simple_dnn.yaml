@@ -1,0 +1,24 @@
+################
+# Neural network config files define the hyperparameters and other related values for your neural network.
+# Because we are defining each docker container as a single unit of work (node in the network)
+# these hyperparameters values also drives orchestartion for spinning up the cluster of docker containers
+# where your neural network will be executed...these cluster of cotainers also represnt your network.
+#
+# NOTE: We may wan to make this a file that is passesd as a cmd argument, for POC this is fine
+# We could also extend this config to include cost function and optimizer
+################
+
+neural_network:
+  num_of_hidden_layers: 3
+  num_nodes_per_layer: 5
+  num_classes: 10
+
+training:
+  epochs: 300
+  data_batch_size: 100
+  num_parameter_servers: 2
+
+ecs:
+  task_definition: 'cuttlefish-task-dev2:7'
+  cluster: 'cuttlefish-dev'
+  auto_scaling_group_resource_id: 'EC2-Cuttlefish'
