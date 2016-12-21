@@ -9,7 +9,7 @@
 ################
 
 neural_network:
-  num_of_hidden_layers: 1
+  num_of_hidden_layers: 3
   num_nodes_per_layer: 5
   num_classes: 10
 
@@ -21,4 +21,4 @@ training:
 ecs:
   task_definition: 'cuttlefish-task-dev2:7'
   cluster: 'cuttlefish-dev'
-  auto_scaling_group_resource_id: 'EC2ContainerService-cuttlefish-dev-EcsInstanceAsg-RFC6L0X7IMCP'
+  auto_scaling_group_resource_id: 'EC2-Cuttlefish'
